@@ -1,39 +1,39 @@
 /* CSS VARIABLES FOR PREMIUM DESIGN SYSTEM */
 :root {
-    /* Color Tokens from DESIGN.md */
-    --color-primary: #1B365D;
-    --color-primary-container: #2A4B7C;
-    --color-on-primary-container: #D6E4F0;
-    --color-secondary: #5D9CEC;
-    --color-secondary-container: #A8D1F7;
-    --color-on-secondary-container: #0D2D54;
-    --color-tertiary: #5B7065;
-    --color-tertiary-container: #7E9680;
-    --color-on-tertiary-container: #DFE5DF;
-    --color-background: #F5F8FA;
-    --color-on-background: #1F2421;
+    /* Color Tokens from DESIGN.md - Vibrant High-Contrast Sky Blue Theme */
+    --color-primary: #0A2540;
+    --color-primary-container: #005691;
+    --color-on-primary-container: #E0F2FE;
+    --color-secondary: #0077B6;
+    --color-secondary-container: #0096C7;
+    --color-on-secondary-container: #F0F9FF;
+    --color-tertiary: #2D5A27;
+    --color-tertiary-container: #477E43;
+    --color-on-tertiary-container: #F0FDF4;
+    --color-background: #FCFDFE;
+    --color-on-background: #0F172A;
     
-    --color-surface: #F5F8FA;
-    --color-surface-dim: #DCE4EC;
-    --color-surface-bright: #FCFDFE;
+    --color-surface: #FCFDFE;
+    --color-surface-dim: #E2E8F0;
+    --color-surface-bright: #FFFFFF;
     --color-surface-container-lowest: #FFFFFF;
-    --color-surface-container-low: #EFF4F8;
-    --color-surface-container: #E5EDF4;
-    --color-surface-container-high: #DCE5EE;
-    --color-surface-container-highest: #D2DCE8;
-    --color-on-surface: #1F2421;
-    --color-on-surface-variant: #4A5568;
-    --color-inverse-surface: #2D3748;
-    --color-inverse-on-surface: #EDF2F7;
+    --color-surface-container-low: #F1F5F9;
+    --color-surface-container: #E2E8F0;
+    --color-surface-container-high: #CBD5E1;
+    --color-surface-container-highest: #94A3B8;
+    --color-on-surface: #0F172A;
+    --color-on-surface-variant: #334155;
+    --color-inverse-surface: #0F172A;
+    --color-inverse-on-surface: #F8FAFC;
     
-    --color-outline: #718096;
-    --color-outline-variant: #CBD5E0;
-    --color-error: #ba1a1a;
+    --color-outline: #475569;
+    --color-outline-variant: #94A3B8;
+    --color-error: #b91c1c;
     --color-on-error: #ffffff;
-    --color-error-container: #ffdad6;
-    --color-on-error-container: #93000a;
+    --color-error-container: #fee2e2;
+    --color-on-error-container: #7f1d1d;
     
-    --color-shadow: rgba(42, 75, 124, 0.08); /* low-opacity warm-tinted blue/navy shadow */
+    --color-shadow: rgba(10, 37, 64, 0.12);
     
     /* Rounded corners definitions */
     --border-radius-sm: 0.125rem; /* 2px */
