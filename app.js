@@ -254,9 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
             attendanceRadio.dispatchEvent(new Event('change'));
         }
 
-        // Show Success card initially but allow editing
-        rsvpForm.classList.add('hidden');
-        rsvpSuccess.classList.remove('hidden');
+        // Pre-populate fields, but keep the form visible so they can submit again if desired
     }
 
     // MURAL DE MEMÓRIAS LOGIC
