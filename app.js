@@ -1,11 +1,11 @@
 // Configuração de envio automático para o Google Sheets (via Google Forms)
-const GOOGLE_FORM_URL = "SUA_URL_DO_GOOGLE_FORMS_AQUI/formResponse";
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe8PifBnjpgeKr7bKiWyGeV42c0DYYKX9ASyMz_3Ipkh08Sug/formResponse";
 const GOOGLE_FORM_ENTRY_MAP = {
-    name: "entry.XXXXXXX",      // Substitua pelo ID do campo Nome
-    contact: "entry.XXXXXXX",   // Substitua pelo ID do campo Contato
-    attendance: "entry.XXXXXXX",// Substitua pelo ID do campo Comparecimento (ex: Sim/Não)
-    guests: "entry.XXXXXXX",    // Substitua pelo ID do campo Quantidade de Pessoas
-    message: "entry.XXXXXXX"    // Substitua pelo ID do campo Mensagem de Carinho
+    name: "entry.92823088",      // ID do campo Nome Completo
+    contact: "entry.1848901607",   // ID do campo Telefone ou E-mail
+    attendance: "entry.1300447161",// ID do campo Você poderá comparecer?
+    guests: "entry.1392250045",    // ID do campo Total de pessoas (incluindo você)
+    message: "entry.2135599661"    // ID do campo Uma mensagem carinhosa para Adelaide Maria
 };
 
 // Initialize Lucide Icons
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
-    
+
     // Countdown Timer Logic
     const countdownDate = new Date("Aug 15, 2026 19:30:00").getTime();
     const daysEl = document.getElementById('countdown-days');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             minutesEl.textContent = String(minutes).padStart(2, '0');
             secondsEl.textContent = String(seconds).padStart(2, '0');
         };
-        
+
         updateCountdown();
         const countdownInterval = setInterval(updateCountdown, 1000);
     }
@@ -70,11 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     // Page Tab Navigation
     const tabs = document.querySelectorAll('.tab-item');
     const sections = document.querySelectorAll('.page-section');
-    
+
     function switchTab(tabId) {
         // Update active tab buttons
         tabs.forEach(tab => {
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-action="go-rsvp"]').forEach(btn => {
         btn.addEventListener('click', () => switchTab('rsvp'));
     });
-    
+
     document.querySelectorAll('[data-action="go-local"]').forEach(btn => {
         btn.addEventListener('click', () => switchTab('local'));
     });
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             const rsvpData = {
                 name: document.getElementById('rsvp-name').value,
                 contact: document.getElementById('rsvp-contact').value,
@@ -228,8 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     body: formData.toString()
                 })
-                .then(() => console.log("Dados enviados para o Google Forms com sucesso!"))
-                .catch(err => console.error("Erro ao enviar dados para o Google Forms:", err));
+                    .then(() => console.log("Dados enviados para o Google Forms com sucesso!"))
+                    .catch(err => console.error("Erro ao enviar dados para o Google Forms:", err));
             }
 
             // Show success details
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('rsvp-contact').value = data.contact;
         document.getElementById('rsvp-guests').value = data.guests;
         document.getElementById('rsvp-message').value = data.message;
-        
+
         const attendanceRadio = document.querySelector(`input[name="rsvp-attendance"][value="${data.attendance}"]`);
         if (attendanceRadio) {
             attendanceRadio.checked = true;
@@ -367,10 +367,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderMemories() {
         if (!muralFeed) return;
         muralFeed.innerHTML = '';
-        
+
         memories.forEach(memory => {
             const initials = memory.author.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-            
+
             let cardHTML = '';
             if (memory.isQuote) {
                 // Render quote style card
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (muralPostForm) {
         muralPostForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             const newMemory = {
                 id: Date.now(),
                 author: document.getElementById('mural-author').value,
@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Prepend new memory
             memories.unshift(newMemory);
             localStorage.setItem('adelaide_mural_memories', JSON.stringify(memories));
-            
+
             // Render list & reset/hide form
             renderMemories();
             muralPostForm.reset();
