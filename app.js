@@ -11,6 +11,31 @@ const GOOGLE_FORM_ENTRY_MAP = {
 // Global YouTube API Ready Callback State
 let ytPlayer;
 let ytPlayerReady = false;
+let userInteracted = false;
+
+// Register interaction listeners immediately to capture early taps/scrolls
+const startAudioOnInteraction = () => {
+    userInteracted = true;
+    if (ytPlayerReady && ytPlayer) {
+        const playerState = ytPlayer.getPlayerState();
+        if (playerState !== YT.PlayerState.PLAYING && playerState !== YT.PlayerState.BUFFERING) {
+            ytPlayer.playVideo();
+        }
+        
+        // Remove listeners only if the player is ready and we initiated play
+        const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
+        eventTypes.forEach(type => {
+            document.removeEventListener(type, startAudioOnInteraction);
+            window.removeEventListener(type, startAudioOnInteraction);
+        });
+    }
+};
+
+const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
+eventTypes.forEach(type => {
+    document.addEventListener(type, startAudioOnInteraction, { passive: true });
+    window.addEventListener(type, startAudioOnInteraction, { passive: true });
+});
 
 window.onYouTubeIframeAPIReady = function() {
     ytPlayer = new YT.Player('yt-player', {
@@ -31,31 +56,17 @@ window.onYouTubeIframeAPIReady = function() {
                 ytPlayerReady = true;
                 ytPlayer.setVolume(35); // Soft ambient volume
                 
-                // Try playing immediately
+                // Try playing (will work if browser autoplay is enabled, or if user already interacted)
                 ytPlayer.playVideo();
 
-                // Fallback to start playing on the first interaction (tap/click anywhere on screen)
-                // because mobile and desktop browsers block unmuted autoplay by default
-                const startAudioOnInteraction = () => {
-                    if (ytPlayerReady && ytPlayer) {
-                        const playerState = ytPlayer.getPlayerState();
-                        if (playerState !== YT.PlayerState.PLAYING && playerState !== YT.PlayerState.BUFFERING) {
-                            ytPlayer.playVideo();
-                        }
-                    }
-                    
+                if (userInteracted) {
+                    // Clean up listeners since we tried playing
                     const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
                     eventTypes.forEach(type => {
                         document.removeEventListener(type, startAudioOnInteraction);
                         window.removeEventListener(type, startAudioOnInteraction);
                     });
-                };
-                
-                const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
-                eventTypes.forEach(type => {
-                    document.addEventListener(type, startAudioOnInteraction, { passive: true });
-                    window.addEventListener(type, startAudioOnInteraction, { passive: true });
-                });
+                }
             },
             'onStateChange': (event) => {
                 const btnMusicToggle = document.getElementById('btn-music-toggle');
