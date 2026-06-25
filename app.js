@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             width: '0',
             videoId: 'jbLksaBn6vY',
             playerVars: {
-                'autoplay': 0,
+                'autoplay': 1,
                 'loop': 1,
                 'playlist': 'jbLksaBn6vY', // Required for looping single video in YT player
                 'controls': 0,
@@ -73,6 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 'onReady': (event) => {
                     ytPlayerReady = true;
                     ytPlayer.setVolume(35); // Soft ambient volume
+                    
+                    // Try playing immediately
+                    ytPlayer.playVideo();
+
+                    // Fallback to start playing on the first interaction (tap/click anywhere on screen)
+                    // because mobile and desktop browsers block unmuted autoplay by default
+                    const startAudioOnInteraction = () => {
+                        if (ytPlayerReady && ytPlayer && ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
+                            ytPlayer.playVideo();
+                        }
+                        document.removeEventListener('click', startAudioOnInteraction);
+                        document.removeEventListener('touchstart', startAudioOnInteraction);
+                    };
+                    document.addEventListener('click', startAudioOnInteraction);
+                    document.addEventListener('touchstart', startAudioOnInteraction);
                 },
                 'onStateChange': (event) => {
                     if (event.data === YT.PlayerState.PLAYING) {
