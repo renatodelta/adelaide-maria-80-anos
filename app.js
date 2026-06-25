@@ -8,80 +8,6 @@ const GOOGLE_FORM_ENTRY_MAP = {
     message: "entry.2135599661"    // ID do campo Uma mensagem carinhosa para Adelaide Maria
 };
 
-// Global YouTube API Ready Callback State
-let ytPlayer;
-let ytPlayerReady = false;
-let userInteracted = false;
-
-// Register interaction listeners immediately to capture early taps/scrolls
-const startAudioOnInteraction = () => {
-    userInteracted = true;
-    if (ytPlayerReady && ytPlayer) {
-        const playerState = ytPlayer.getPlayerState();
-        if (playerState !== YT.PlayerState.PLAYING && playerState !== YT.PlayerState.BUFFERING) {
-            ytPlayer.playVideo();
-        }
-        
-        // Remove listeners only if the player is ready and we initiated play
-        const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
-        eventTypes.forEach(type => {
-            document.removeEventListener(type, startAudioOnInteraction);
-            window.removeEventListener(type, startAudioOnInteraction);
-        });
-    }
-};
-
-const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
-eventTypes.forEach(type => {
-    document.addEventListener(type, startAudioOnInteraction, { passive: true });
-    window.addEventListener(type, startAudioOnInteraction, { passive: true });
-});
-
-window.onYouTubeIframeAPIReady = function() {
-    ytPlayer = new YT.Player('yt-player', {
-        height: '0',
-        width: '0',
-        videoId: 'jbLksaBn6vY',
-        playerVars: {
-            'autoplay': 1,
-            'loop': 1,
-            'playlist': 'jbLksaBn6vY', // Required for looping single video in YT player
-            'controls': 0,
-            'showinfo': 0,
-            'rel': 0,
-            'modestbranding': 1
-        },
-        events: {
-            'onReady': (event) => {
-                ytPlayerReady = true;
-                ytPlayer.setVolume(35); // Soft ambient volume
-                
-                // Try playing (will work if browser autoplay is enabled, or if user already interacted)
-                ytPlayer.playVideo();
-
-                if (userInteracted) {
-                    // Clean up listeners since we tried playing
-                    const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
-                    eventTypes.forEach(type => {
-                        document.removeEventListener(type, startAudioOnInteraction);
-                        window.removeEventListener(type, startAudioOnInteraction);
-                    });
-                }
-            },
-            'onStateChange': (event) => {
-                const btnMusicToggle = document.getElementById('btn-music-toggle');
-                if (btnMusicToggle) {
-                    if (event.data === YT.PlayerState.PLAYING) {
-                        btnMusicToggle.classList.add('playing');
-                    } else {
-                        btnMusicToggle.classList.remove('playing');
-                    }
-                }
-            }
-        }
-    });
-};
-
 // Initialize Lucide Icons
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') {
@@ -124,21 +50,59 @@ document.addEventListener('DOMContentLoaded', () => {
         const countdownInterval = setInterval(updateCountdown, 1000);
     }
 
-    // YouTube Background Music Toggle Listener
+    // Background Music Logic (HTML5 Audio tag)
+    const bgMusic = document.getElementById('bg-music');
     const btnMusicToggle = document.getElementById('btn-music-toggle');
 
-    if (btnMusicToggle) {
-        btnMusicToggle.addEventListener('click', () => {
-            if (!ytPlayerReady || !ytPlayer) {
-                console.log("YouTube Player não está pronto ainda.");
-                return;
+    if (bgMusic && btnMusicToggle) {
+        bgMusic.volume = 0.35; // Soft ambient volume
+
+        // Try playing immediately (works if browser allows autoplay on load)
+        const playPromise = bgMusic.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                btnMusicToggle.classList.add('playing');
+            }).catch(error => {
+                console.log("Autoplay blocked. Waiting for user interaction.");
+            });
+        }
+
+        // Fallback: Start playing on first user interaction anywhere on screen
+        const startAudioOnInteraction = () => {
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    btnMusicToggle.classList.add('playing');
+                }).catch(err => {
+                    console.log("Playback failed on user gesture:", err);
+                });
             }
             
-            const playerState = ytPlayer.getPlayerState();
-            if (playerState === YT.PlayerState.PLAYING) {
-                ytPlayer.pauseVideo();
+            // Clean up interaction events
+            const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
+            eventTypes.forEach(type => {
+                document.removeEventListener(type, startAudioOnInteraction);
+                window.removeEventListener(type, startAudioOnInteraction);
+            });
+        };
+
+        const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
+        eventTypes.forEach(type => {
+            document.addEventListener(type, startAudioOnInteraction, { passive: true });
+            window.addEventListener(type, startAudioOnInteraction, { passive: true });
+        });
+
+        // Manual toggle button listener
+        btnMusicToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent triggering document clicks
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    btnMusicToggle.classList.add('playing');
+                }).catch(err => {
+                    console.log("Play failed on button click:", err);
+                });
             } else {
-                ytPlayer.playVideo();
+                bgMusic.pause();
+                btnMusicToggle.classList.remove('playing');
             }
         });
     }
