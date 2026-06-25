@@ -8,6 +8,58 @@ const GOOGLE_FORM_ENTRY_MAP = {
     message: "entry.2135599661"    // ID do campo Uma mensagem carinhosa para Adelaide Maria
 };
 
+// Global YouTube API Ready Callback State
+let ytPlayer;
+let ytPlayerReady = false;
+
+window.onYouTubeIframeAPIReady = function() {
+    ytPlayer = new YT.Player('yt-player', {
+        height: '0',
+        width: '0',
+        videoId: 'jbLksaBn6vY',
+        playerVars: {
+            'autoplay': 1,
+            'loop': 1,
+            'playlist': 'jbLksaBn6vY', // Required for looping single video in YT player
+            'controls': 0,
+            'showinfo': 0,
+            'rel': 0,
+            'modestbranding': 1
+        },
+        events: {
+            'onReady': (event) => {
+                ytPlayerReady = true;
+                ytPlayer.setVolume(35); // Soft ambient volume
+                
+                // Try playing immediately
+                ytPlayer.playVideo();
+
+                // Fallback to start playing on the first interaction (tap/click anywhere on screen)
+                // because mobile and desktop browsers block unmuted autoplay by default
+                const startAudioOnInteraction = () => {
+                    if (ytPlayerReady && ytPlayer && ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
+                        ytPlayer.playVideo();
+                    }
+                    document.removeEventListener('click', startAudioOnInteraction);
+                    document.removeEventListener('touchstart', startAudioOnInteraction);
+                };
+                document.addEventListener('click', startAudioOnInteraction);
+                document.addEventListener('touchstart', startAudioOnInteraction);
+            },
+            'onStateChange': (event) => {
+                const btnMusicToggle = document.getElementById('btn-music-toggle');
+                if (btnMusicToggle) {
+                    if (event.data === YT.PlayerState.PLAYING) {
+                        btnMusicToggle.classList.add('playing');
+                    } else {
+                        btnMusicToggle.classList.remove('playing');
+                    }
+                }
+            }
+        }
+    });
+};
+
 // Initialize Lucide Icons
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') {
@@ -50,55 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const countdownInterval = setInterval(updateCountdown, 1000);
     }
 
-    // YouTube Background Music Logic
-    let ytPlayer;
-    let ytPlayerReady = false;
+    // YouTube Background Music Toggle Listener
     const btnMusicToggle = document.getElementById('btn-music-toggle');
-
-    window.onYouTubeIframeAPIReady = function() {
-        ytPlayer = new YT.Player('yt-player', {
-            height: '0',
-            width: '0',
-            videoId: 'jbLksaBn6vY',
-            playerVars: {
-                'autoplay': 1,
-                'loop': 1,
-                'playlist': 'jbLksaBn6vY', // Required for looping single video in YT player
-                'controls': 0,
-                'showinfo': 0,
-                'rel': 0,
-                'modestbranding': 1
-            },
-            events: {
-                'onReady': (event) => {
-                    ytPlayerReady = true;
-                    ytPlayer.setVolume(35); // Soft ambient volume
-                    
-                    // Try playing immediately
-                    ytPlayer.playVideo();
-
-                    // Fallback to start playing on the first interaction (tap/click anywhere on screen)
-                    // because mobile and desktop browsers block unmuted autoplay by default
-                    const startAudioOnInteraction = () => {
-                        if (ytPlayerReady && ytPlayer && ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
-                            ytPlayer.playVideo();
-                        }
-                        document.removeEventListener('click', startAudioOnInteraction);
-                        document.removeEventListener('touchstart', startAudioOnInteraction);
-                    };
-                    document.addEventListener('click', startAudioOnInteraction);
-                    document.addEventListener('touchstart', startAudioOnInteraction);
-                },
-                'onStateChange': (event) => {
-                    if (event.data === YT.PlayerState.PLAYING) {
-                        btnMusicToggle.classList.add('playing');
-                    } else {
-                        btnMusicToggle.classList.remove('playing');
-                    }
-                }
-            }
-        });
-    };
 
     if (btnMusicToggle) {
         btnMusicToggle.addEventListener('click', () => {
