@@ -1,522 +1,483 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Celebração de 80 Anos de Adelaide Maria. Um lindo convite interativo e mural de recordações para a família e amigos de Adelaide Maria.">
+    <meta name="description"
+        content="Celebração de 80 Anos de Adelaide Maria. Um lindo convite interativo e mural de recordações para a família e amigos de Adelaide Maria.">
     <title>Adelaide Maria - 80 Anos de Histórias</title>
     <!-- Google Fonts: EB Garamond, Source Serif 4, Playfair Display, and Literata as specified in DESIGN.md -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Literata:ital,wght@0,300..900;1,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Literata:ital,wght@0,300..900;1,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+        rel="stylesheet">
     <!-- Lucide Icons for premium feel -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-    <!-- Background Music Element -->
-    <audio id="bg-music" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
+<!-- Background Music Element -->
+<audio id="bg-music" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
 
-    <!-- App Container to enforce elegant mobile device framing or responsive central container on desktop -->
-    <div class="app-container">
-        
-        <!-- Falling Rose Petals Background Effect -->
-        <div class="falling-petals-container" id="petals-container">
-            <span class="petal-particle" style="left: 10%; animation-delay: 0s;"></span>
-            <span class="petal-particle" style="left: 30%; animation-delay: 2.2s;"></span>
-            <span class="petal-particle" style="left: 55%; animation-delay: 4.5s;"></span>
-            <span class="petal-particle" style="left: 75%; animation-delay: 1.2s;"></span>
-            <span class="petal-particle" style="left: 90%; animation-delay: 5.8s;"></span>
-            <span class="petal-particle" style="left: 20%; animation-delay: 7s;"></span>
-            <span class="petal-particle" style="left: 45%; animation-delay: 3s;"></span>
-            <span class="petal-particle" style="left: 65%; animation-delay: 8s;"></span>
-        </div>
-        
-        <!-- Header -->
-        <header class="app-header">
-            <button id="btn-hamburger" class="header-icon-btn" aria-label="Menu">
-                <i data-lucide="menu"></i>
-            </button>
-            <h1 class="header-title">Adelaide Maria</h1>
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <button id="btn-music-toggle" class="music-toggle-btn" aria-label="Música de Fundo">
-                    <i data-lucide="music"></i>
-                </button>
-                <button id="btn-mural-shortcut" class="header-icon-btn" aria-label="Mural de Memórias">
-                    <i data-lucide="sparkles"></i>
-                </button>
-            </div>
-        </header>
+<!-- App Container to enforce elegant mobile device framing or responsive central container on desktop -->
+<div class="app-container">
 
-        <!-- Sidebar Navigation Menu (Overlay) -->
-        <nav id="sidebar-nav" class="sidebar-nav">
-            <div class="sidebar-header">
-                <h2 class="sidebar-title">Menu</h2>
-                <button id="btn-close-sidebar" class="header-icon-btn" aria-label="Fechar Menu">
-                    <i data-lucide="x"></i>
-                </button>
-            </div>
-            <ul class="sidebar-links">
-                <li><button class="sidebar-link-btn" data-target="home"><i data-lucide="home"></i> Início</button></li>
-                <li><button class="sidebar-link-btn" data-target="family"><i data-lucide="users"></i> Nossa Família</button></li>
-                <li><button class="sidebar-link-btn" data-target="rsvp"><i data-lucide="calendar-check"></i> Confirmar Presença</button></li>
-                <li><button class="sidebar-link-btn" data-target="local"><i data-lucide="map-pin"></i> Local e Informações</button></li>
-                <li><button class="sidebar-link-btn" data-target="mural"><i data-lucide="heart"></i> Mural de Memórias</button></li>
-            </ul>
-        </nav>
-        <div id="sidebar-overlay" class="sidebar-overlay"></div>
-
-        <!-- Main Content Area -->
-        <main class="app-content">
-
-            <!-- PAGE: INÍCIO (HOME) -->
-            <section id="page-home" class="page-section active">
-                <div class="hero-image-wrapper">
-                    <img src="assets/adelaide_portrait.png" alt="Adelaide Maria Sorrindo" class="hero-portrait">
-                    <div class="badge-years">
-                        <div class="badge-range">1946 — 2026</div>
-                        <div class="badge-subtitle">OITO DÉCADAS DE VIDA</div>
-                    </div>
-                </div>
-
-                <div class="section-intro">
-                    <div class="divider-gold-line"><span>UMA JORNADA DE AMOR</span></div>
-                    <h2 class="main-title">Adelaide Maria</h2>
-                    <h3 class="main-subtitle">80 Anos de Histórias</h3>
-                    
-                    <div class="event-brief-card">
-                        <div class="event-month">AGOSTO</div>
-                        <div class="event-day">15</div>
-                        <div class="event-time">
-                            <span>Sábado, às 19:30h</span>
-                            <strong>2026</strong>
-                        </div>
-                    </div>
-
-                    <!-- Countdown Timer -->
-                    <div class="countdown-container">
-                        <div class="countdown-box">
-                            <span id="countdown-days" class="countdown-number">00</span>
-                            <span class="countdown-label">Dias</span>
-                        </div>
-                        <div class="countdown-box">
-                            <span id="countdown-hours" class="countdown-number">00</span>
-                            <span class="countdown-label">Horas</span>
-                        </div>
-                        <div class="countdown-box">
-                            <span id="countdown-minutes" class="countdown-number">00</span>
-                            <span class="countdown-label">Min</span>
-                        </div>
-                        <div class="countdown-box">
-                            <span id="countdown-seconds" class="countdown-number">00</span>
-                            <span class="countdown-label">Seg</span>
-                        </div>
-                    </div>
-
-                    <p class="intro-description">
-                        Oitenta anos é uma coleção de momentos, risos e lições. Convidamos você para celebrar a vida da nossa matriarca em uma noite de elegância e memórias.
-                    </p>
-
-                    <div class="intro-actions">
-                        <button class="btn-primary" data-action="go-rsvp">Confirmar Presença</button>
-                        <button class="btn-secondary" data-action="go-local">Ver Localização</button>
-                    </div>
-                </div>
-
-                <!-- Mensagem da Família -->
-                <div class="family-message-card">
-                    <div class="card-quote-icon">
-                        <i data-lucide="quote" class="quote-svg"></i>
-                    </div>
-                    <div class="flower-icon-wrapper">
-                        <i data-lucide="flower" class="flower-svg"></i>
-                    </div>
-                    <h4 class="card-title-serif">Mensagem da Família</h4>
-                    <blockquote class="card-blockquote">
-                        "Nossa mãe sempre foi o alicerce que nos manteve unidos. Seus 80 anos representam não apenas o tempo que passou, mas a imensa quantidade de amor que ela distribuiu. Cada ruga em seu rosto conta uma história de superação e alegria. Esperamos por todos vocês para brindarmos a essa mulher extraordinária que nos ensinou o verdadeiro significado de família."
-                    </blockquote>
-                    <cite class="card-cite">Com amor, Seus Filhos e Netos</cite>
-                </div>
-
-                <!-- Grid Galeria / Jornada -->
-                <div class="journey-grid">
-                    <div class="journey-card-large" data-action="open-journey">
-                        <img src="assets/adelaide_young.png" alt="Adelaide na Juventude" class="journey-img">
-                        <div class="journey-card-overlay">
-                            <h4>O Início da Jornada</h4>
-                        </div>
-                    </div>
-                    <div class="journey-card-small">
-                        <img src="assets/glasses_book.png" alt="Óculos e livro antigo" class="journey-img-small">
-                    </div>
-                    <div class="journey-card-small">
-                        <img src="assets/red_roses.png" alt="Rosas vermelhas" class="journey-img-small">
-                    </div>
-                </div>
-
-                <!-- Linha do Tempo Link -->
-                <div class="timeline-banner-card" id="btn-open-timeline">
-                    <div class="timeline-icon">
-                        <i data-lucide="history"></i>
-                    </div>
-                    <div class="timeline-text">
-                        <h4>Linha do Tempo</h4>
-                        <p>Explore as oito décadas que transformaram Adelaide no que ela é hoje.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PAGE: FAMÍLIA -->
-            <section id="page-family" class="page-section">
-                <div class="section-header-centered">
-                    <h2 class="page-title-serif">Nossa Família</h2>
-                    <p class="page-subtitle-italic">"A família é o lugar onde a nossa história começa e o amor nunca termina."</p>
-                    <div class="heart-separator">
-                        <i data-lucide="heart" class="heart-icon"></i>
-                    </div>
-                </div>
-
-                <!-- Irmãos -->
-                <div class="family-group">
-                    <div class="group-header">
-                        <h3>Irmãos</h3>
-                        <span class="group-tag">A BASE</span>
-                    </div>
-                    <div class="members-grid">
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-man">JC</div>
-                            <span class="member-name">José Carlos</span>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-woman">MH</div>
-                            <span class="member-name">Maria Helena</span>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-man">AB</div>
-                            <span class="member-name">Antônio Bento</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Filhos -->
-                <div class="family-group">
-                    <div class="group-header">
-                        <h3>Filhos</h3>
-                        <span class="group-tag">O LEGADO</span>
-                    </div>
-                    <div class="members-grid">
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-woman">AP</div>
-                            <span class="member-name">Ana Paula</span>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-man">RI</div>
-                            <span class="member-name">Ricardo</span>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-woman">BE</div>
-                            <span class="member-name">Beatriz</span>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-man">FE</div>
-                            <span class="member-name">Fernando</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Netos -->
-                <div class="family-group">
-                    <div class="group-header">
-                        <h3>Netos</h3>
-                        <span class="group-tag">A CONTINUIDADE</span>
-                    </div>
-                    <div class="members-grid">
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-man">LU</div>
-                            <span class="member-name">Lucas</span>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-woman">IS</div>
-                            <span class="member-name">Isabela</span>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-man">GA</div>
-                            <span class="member-name">Gabriel</span>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-woman">MA</div>
-                            <span class="member-name">Mariana</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bisnetos -->
-                <div class="family-group bg-light-card">
-                    <div class="group-header">
-                        <h3>Bisnetos</h3>
-                        <span class="group-tag">O FUTURO</span>
-                    </div>
-                    <div class="members-grid">
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-child">TH</div>
-                            <span class="member-name">Theo</span>
-                        </div>
-                        <div class="member-card">
-                            <div class="member-avatar placeholder-avatar-child">AL</div>
-                            <span class="member-name">Alice</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="family-footer-quote">
-                    <div class="double-quote-small">“</div>
-                    <p class="quote-text">Uma árvore é conhecida pelos seus frutos, e uma vida pela sua descendência.</p>
-                    <span class="quote-author">80 ANOS DE AMOR</span>
-                </div>
-            </section>
-
-            <!-- PAGE: LOCAL -->
-            <section id="page-local" class="page-section">
-                <div class="section-header-centered">
-                    <span class="section-badge-top">OITENTA ANOS DE VIDA</span>
-                    <h2 class="page-title-serif">A Celebração</h2>
-                    <p class="page-subtitle-italic">"Uma vida celebrada em cada detalhe, cercada pelo amor daqueles que trilharam esse caminho conosco."</p>
-                </div>
-
-                <!-- Informações do Evento -->
-                <div class="event-details-list">
-                    <div class="detail-item-card">
-                        <div class="detail-icon-wrapper">
-                            <i data-lucide="calendar"></i>
-                        </div>
-                        <div class="detail-info">
-                            <span class="detail-label">DATA E HORÁRIO</span>
-                            <h4 class="detail-value">15 de Agosto, 2026</h4>
-                            <p class="detail-description">Sábado, às 19:30 horas</p>
-                        </div>
-                    </div>
-
-                    <div class="detail-item-card">
-                        <div class="detail-icon-wrapper">
-                            <i data-lucide="map-pin"></i>
-                        </div>
-                        <div class="detail-info">
-                            <span class="detail-label">LOCALIZAÇÃO</span>
-                            <h4 class="detail-value">Valle Chico Mineiro</h4>
-                            <p class="detail-description">Estrada da Grama, 4km — São José do Barreiro, SP</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Imagem do Local -->
-                <div class="local-atmosphere-image">
-                    <img src="assets/tea_set.png" alt="Decoração e Louça Fina" class="local-img">
-                </div>
-
-                <!-- Mapa -->
-                <div class="map-card-wrapper">
-                    <img src="assets/event_map.png" alt="Mapa de Como Chegar" class="map-image-mock">
-                    <div class="map-card-overlay">
-                        <span class="map-label">COMO CHEGAR</span>
-                        <p class="map-desc">O local dispõe de serviço de manobrista (Valet) no local.</p>
-                        <a href="https://maps.app.goo.gl/fdAQBc52GrhqeTZs6" target="_blank" class="btn-map-link">
-                            <i data-lucide="navigation"></i> Abrir no Mapa
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PAGE: RSVP -->
-            <section id="page-rsvp" class="page-section">
-                <div class="section-header-centered">
-                    <h2 class="page-title-serif">Confirme sua Presença</h2>
-                    <p class="page-subtitle-italic">Sua presença é o maior presente que Adelaide Maria poderia receber.</p>
-                </div>
-
-                <div class="rsvp-form-container">
-                    <form id="rsvp-form" class="elegant-form">
-                        <div class="form-group-field">
-                            <label for="rsvp-name">Nome Completo</label>
-                            <input type="text" id="rsvp-name" required placeholder="Digite seu nome completo">
-                        </div>
-
-                        <div class="form-group-field">
-                            <label for="rsvp-contact">Telefone ou E-mail</label>
-                            <input type="text" id="rsvp-contact" required placeholder="ex: (71) 99999-9999 ou seu@email.com">
-                        </div>
-
-                        <div class="form-group-field">
-                            <label>Você poderá comparecer?</label>
-                            <div class="radio-group-modern">
-                                <label class="radio-option">
-                                    <input type="radio" name="rsvp-attendance" value="sim" checked required>
-                                    <span class="radio-custom"></span>
-                                    <span class="radio-label">Sim, com certeza!</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="rsvp-attendance" value="nao">
-                                    <span class="radio-custom"></span>
-                                    <span class="radio-label">Infelizmente, não poderei.</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div id="rsvp-guests-wrapper" class="form-group-field transition-height">
-                            <label for="rsvp-guests">Total de pessoas (incluindo você)</label>
-                            <input type="number" id="rsvp-guests" min="1" max="10" value="1" required>
-                        </div>
-
-                        <div class="form-group-field">
-                            <label for="rsvp-message">Uma mensagem carinhosa para Adelaide Maria</label>
-                            <textarea id="rsvp-message" rows="4" placeholder="Escreva uma mensagem especial para Adelaide..."></textarea>
-                        </div>
-
-                        <button type="submit" id="btn-submit-rsvp" class="btn-form-submit">Enviar Confirmação</button>
-                        <p class="rsvp-deadline-note">Por favor, confirme até 25 de Julho de 2026.</p>
-                    </form>
-
-                    <!-- Success State (Hidden by default) -->
-                    <div id="rsvp-success-message" class="rsvp-success-card hidden">
-                        <div class="wax-seal-wrapper">
-                            <div class="wax-seal">
-                                <div class="wax-seal-inner">AM</div>
-                            </div>
-                        </div>
-                        <h3>Confirmação Recebida!</h3>
-                        <p id="success-text-detail">Obrigado por confirmar sua presença. Mal podemos esperar para celebrar este momento especial com você.</p>
-                        <button id="btn-rsvp-reset" class="btn-secondary">Fechar</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PAGE: MURAL DE MEMÓRIAS -->
-            <section id="page-mural" class="page-section">
-                <div class="section-header-centered">
-                    <span class="section-badge-top">LEGADO & AFETO</span>
-                    <h2 class="page-title-serif">80 Anos de Histórias</h2>
-                    <p class="page-subtitle-italic">Um espaço dedicado para compartilhamos os momentos mais preciosos que vivemos ao lado de Adelaide Maria. Deixe sua homenagem, foto ou um pequeno relato.</p>
-                    
-                    <button id="btn-open-mural-form" class="btn-primary-mural">
-                        <i data-lucide="pen-tool"></i> Compartilhar uma Memória
-                    </button>
-                </div>
-
-                <!-- Create Memory Modal/Form Card (collapsible/overlay style) -->
-                <div id="mural-form-container" class="mural-form-card hidden">
-                    <div class="mural-form-header">
-                        <h3>Nova Mensagem</h3>
-                        <button id="btn-close-mural-form" class="btn-icon-close" aria-label="Fechar"><i data-lucide="x"></i></button>
-                    </div>
-                    <form id="mural-post-form">
-                        <div class="form-group-field">
-                            <label for="mural-author">Seu Nome</label>
-                            <input type="text" id="mural-author" required placeholder="Seu nome completo">
-                        </div>
-                        <div class="form-group-field">
-                            <label for="mural-relationship">Grau de Parentesco / Relação</label>
-                            <input type="text" id="mural-relationship" required placeholder="Ex: Filho, Neta, Amigo de infância">
-                        </div>
-                        <div class="form-group-field">
-                            <label for="mural-text">Sua Mensagem ou Lembrança</label>
-                            <textarea id="mural-text" rows="5" required placeholder="Escreva aqui uma história marcante ou sua mensagem de carinho..."></textarea>
-                        </div>
-                        <div class="form-group-field">
-                            <label for="mural-image">Link da Foto (Opcional)</label>
-                            <input type="url" id="mural-image" placeholder="Ex: https://link-da-imagem.com/foto.jpg">
-                            <span class="input-helper">Cole o link de uma imagem de sua preferência</span>
-                        </div>
-                        <button type="submit" class="btn-form-submit">Publicar no Mural</button>
-                    </form>
-                </div>
-
-                <!-- Memories Feed -->
-                <div id="mural-feed" class="mural-posts-feed">
-                    <!-- Dynamic posts injected here -->
-                </div>
-
-                <div class="mural-feed-footer">
-                    <button id="btn-load-more-memories" class="btn-secondary">Ver mais lembranças</button>
-                </div>
-            </section>
-
-            <!-- INTERACTIVE TIMELINE MODAL / OVERLAY -->
-            <div id="timeline-modal" class="timeline-modal-overlay hidden">
-                <div class="timeline-modal-container">
-                    <header class="timeline-modal-header">
-                        <h3>Linha do Tempo</h3>
-                        <button id="btn-close-timeline-modal" class="btn-icon-close" aria-label="Fechar"><i data-lucide="x"></i></button>
-                    </header>
-                    <div class="timeline-scroll-area">
-                        <div class="timeline-track">
-                            <!-- Decade 1 -->
-                            <div class="timeline-node">
-                                <div class="timeline-badge-year">1946</div>
-                                <div class="timeline-node-content">
-                                    <h4>O Nascimento</h4>
-                                    <p>Adelaide Maria nasce em Salvador, enchendo a casa de seus pais de alegria e abrindo os caminhos para uma bela vida.</p>
-                                </div>
-                            </div>
-                            <!-- Decade 2 -->
-                            <div class="timeline-node">
-                                <div class="timeline-badge-year">1966</div>
-                                <div class="timeline-node-content">
-                                    <h4>Casamento e Primeiros Passos</h4>
-                                    <p>Casa-se com o amor de sua vida e juntos começam a construir a base sólida de uma família guiada pelo afeto.</p>
-                                </div>
-                            </div>
-                            <!-- Decade 3 -->
-                            <div class="timeline-node">
-                                <div class="timeline-badge-year">1986</div>
-                                <div class="timeline-node-content">
-                                    <h4>Consolidação do Lar</h4>
-                                    <p>Com os filhos crescendo, sua casa torna-se o porto seguro e ponto de encontro alegre de toda a família.</p>
-                                </div>
-                            </div>
-                            <!-- Decade 4 -->
-                            <div class="timeline-node">
-                                <div class="timeline-badge-year">2006</div>
-                                <div class="timeline-node-content">
-                                    <h4>Chegada dos Netos</h4>
-                                    <p>Inicia-se a fase de avó carinhosa, mimando e contando histórias inesquecíveis para a nova geração que se expande.</p>
-                                </div>
-                            </div>
-                            <!-- Decade 5 -->
-                            <div class="timeline-node">
-                                <div class="timeline-badge-year">2026</div>
-                                <div class="timeline-node-content">
-                                    <h4>Oito Décadas de Amor</h4>
-                                    <p>Celebração memorável de 80 anos cercada de filhos, netos, bisnetos, parentes e amigos com eterna gratidão.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </main>
-
-        <!-- Bottom Tab Navigation Bar -->
-        <nav class="app-tab-navigation">
-            <button class="tab-item active" data-tab="home">
-                <i data-lucide="home"></i>
-                <span>Início</span>
-            </button>
-            <button class="tab-item" data-tab="family">
-                <i data-lucide="users"></i>
-                <span>Família</span>
-            </button>
-            <button class="tab-item" data-tab="rsvp">
-                <i data-lucide="calendar-check"></i>
-                <span>Presença</span>
-            </button>
-            <button class="tab-item" data-tab="local">
-                <i data-lucide="map-pin"></i>
-                <span>Local</span>
-            </button>
-        </nav>
-
+    <!-- Falling Rose Petals Background Effect -->
+    <div class="falling-petals-container" id="petals-container">
+        <span class="petal-particle" style="left: 10%; animation-delay: 0s;"></span>
+        <span class="petal-particle" style="left: 30%; animation-delay: 2.2s;"></span>
+        <span class="petal-particle" style="left: 55%; animation-delay: 4.5s;"></span>
+        <span class="petal-particle" style="left: 75%; animation-delay: 1.2s;"></span>
+        <span class="petal-particle" style="left: 90%; animation-delay: 5.8s;"></span>
+        <span class="petal-particle" style="left: 20%; animation-delay: 7s;"></span>
+        <span class="petal-particle" style="left: 45%; animation-delay: 3s;"></span>
+        <span class="petal-particle" style="left: 65%; animation-delay: 8s;"></span>
     </div>
 
-    <!-- Scripts -->
-    <script src="app.js"></script>
+    <!-- Header -->
+    <header class="app-header">
+        <button id="btn-hamburger" class="header-icon-btn" aria-label="Menu">
+            <i data-lucide="menu"></i>
+        </button>
+        <h1 class="header-title">Adelaide Maria</h1>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <button id="btn-music-toggle" class="music-toggle-btn" aria-label="Música de Fundo">
+                <i data-lucide="music"></i>
+            </button>
+            <button id="btn-mural-shortcut" class="header-icon-btn" aria-label="Mural de Memórias">
+                <i data-lucide="sparkles"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar Navigation Menu (Overlay) -->
+    <nav id="sidebar-nav" class="sidebar-nav">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Menu</h2>
+            <button id="btn-close-sidebar" class="header-icon-btn" aria-label="Fechar Menu">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <ul class="sidebar-links">
+            <li><button class="sidebar-link-btn" data-target="home"><i data-lucide="home"></i> Início</button></li>
+            <li><button class="sidebar-link-btn" data-target="family"><i data-lucide="users"></i> Nossa Família</button>
+            </li>
+            <li><button class="sidebar-link-btn" data-target="rsvp"><i data-lucide="calendar-check"></i> Confirmar
+                    Presença</button></li>
+            <li><button class="sidebar-link-btn" data-target="local"><i data-lucide="map-pin"></i> Local e
+                    Informações</button></li>
+            <li><button class="sidebar-link-btn" data-target="mural"><i data-lucide="heart"></i> Mural de
+                    Memórias</button></li>
+        </ul>
+    </nav>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Main Content Area -->
+    <main class="app-content">
+
+        <!-- PAGE: INÍCIO (HOME) -->
+        <section id="page-home" class="page-section active">
+            <div class="hero-image-wrapper">
+                <img src="assets/adelaide_portrait.png" alt="Adelaide Maria Sorrindo" class="hero-portrait">
+                <div class="badge-years">
+                    <div class="badge-range">1946 — 2026</div>
+                    <div class="badge-subtitle">AMOR, FÉ E ENTREGA</div>
+                </div>
+            </div>
+
+            <div class="section-intro">
+                <div class="divider-gold-line"><span>UMA JORNADA DE AMOR</span></div>
+                <h2 class="main-title">Adelaide Maria</h2>
+                <h3 class="main-subtitle">80 Anos de Histórias</h3>
+
+                <div class="event-brief-card">
+                    <div class="event-month">AGOSTO</div>
+                    <div class="event-day">15</div>
+                    <div class="event-time">
+                        <span>Sábado, às 19:30h</span>
+                        <strong>2026</strong>
+                    </div>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-container">
+                    <div class="countdown-box">
+                        <span id="countdown-days" class="countdown-number">00</span>
+                        <span class="countdown-label">Dias</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="countdown-hours" class="countdown-number">00</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="countdown-minutes" class="countdown-number">00</span>
+                        <span class="countdown-label">Min</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="countdown-seconds" class="countdown-number">00</span>
+                        <span class="countdown-label">Seg</span>
+                    </div>
+                </div>
+
+                <p class="intro-description">
+                    Oitenta anos é uma coleção de momentos, risos e lições. Convidamos você para celebrar a vida da
+                    nossa matriarca em um almoço repleto de carinho, histórias e memórias inesquecíveis.
+                </p>
+
+                <div class="intro-actions">
+                    <button class="btn-primary" data-action="go-rsvp">Confirmar Presença</button>
+                    <button class="btn-secondary" data-action="go-local">Ver Localização</button>
+                </div>
+            </div>
+
+            <!-- Mensagem da Família -->
+            <div class="family-message-card">
+                <div class="card-quote-icon">
+                    <i data-lucide="quote" class="quote-svg"></i>
+                </div>
+                <div class="flower-icon-wrapper">
+                    <i data-lucide="flower" class="flower-svg"></i>
+                </div>
+                <h4 class="card-title-serif">Mensagem da Família</h4>
+                <blockquote class="card-blockquote">
+                    "Junto com seu esposo, nossa mãe sempre foi o alicerce que nos manteve unidos. Seus 80 anos
+                    representam não apenas o tempo
+                    que passou, mas a imensa quantidade de amor que ela distribuiu. Cada ruga em seu rosto conta uma
+                    história de superação e alegria. Esperamos por todos vocês para brindarmos a essa mulher
+                    extraordinária que nos ensinou o verdadeiro significado de família."
+                </blockquote>
+                <cite class="card-cite">Com amor, Seus Filhos, Netos e Bisnetos</cite>
+            </div>
+
+            <!-- Grid Galeria / Jornada -->
+            <div class="journey-grid">
+                <div class="journey-card-large" data-action="open-journey">
+                    <img src="assets/adelaide_young.png" alt="Adelaide na Juventude" class="journey-img">
+                    <div class="journey-card-overlay">
+                        <h4>O Início da Jornada</h4>
+                    </div>
+                </div>
+                <div class="journey-card-small">
+                    <img src="assets/glasses_book.png" alt="Óculos e livro antigo" class="journey-img-small">
+                </div>
+                <div class="journey-card-small">
+                    <img src="assets/red_roses.png" alt="Rosas vermelhas" class="journey-img-small">
+                </div>
+            </div>
+
+        </section>
+
+        <!-- PAGE: FAMÍLIA -->
+        <section id="page-family" class="page-section">
+            <div class="section-header-centered">
+                <h2 class="page-title-serif">Nossa Família</h2>
+                <p class="page-subtitle-italic">"A família é o lugar onde a nossa história começa e o amor nunca
+                    termina."</p>
+                <div class="heart-separator">
+                    <i data-lucide="heart" class="heart-icon"></i>
+                </div>
+            </div>
+
+            <!-- Irmãos -->
+            <div class="family-group">
+                <div class="group-header">
+                    <h3>Irmãos</h3>
+                    <span class="group-tag">A BASE</span>
+                </div>
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-man">JC</div>
+                        <span class="member-name">José Carlos</span>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-woman">MH</div>
+                        <span class="member-name">Maria Helena</span>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-man">AB</div>
+                        <span class="member-name">Antônio Bento</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filhos -->
+            <div class="family-group">
+                <div class="group-header">
+                    <h3>Filhos</h3>
+                    <span class="group-tag">O LEGADO</span>
+                </div>
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-woman">AP</div>
+                        <span class="member-name">Ana Paula</span>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-man">RI</div>
+                        <span class="member-name">Ricardo</span>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-woman">BE</div>
+                        <span class="member-name">Beatriz</span>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-man">FE</div>
+                        <span class="member-name">Fernando</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Netos -->
+            <div class="family-group">
+                <div class="group-header">
+                    <h3>Netos</h3>
+                    <span class="group-tag">A CONTINUIDADE</span>
+                </div>
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-man">LU</div>
+                        <span class="member-name">Lucas</span>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-woman">IS</div>
+                        <span class="member-name">Isabela</span>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-man">GA</div>
+                        <span class="member-name">Gabriel</span>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-woman">MA</div>
+                        <span class="member-name">Mariana</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bisnetos -->
+            <div class="family-group bg-light-card">
+                <div class="group-header">
+                    <h3>Bisnetos</h3>
+                    <span class="group-tag">O FUTURO</span>
+                </div>
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-child">TH</div>
+                        <span class="member-name">Theo</span>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-avatar placeholder-avatar-child">AL</div>
+                        <span class="member-name">Alice</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="family-footer-quote">
+                <div class="double-quote-small">“</div>
+                <p class="quote-text">Uma árvore é conhecida pelos seus frutos, e uma vida pela sua descendência.</p>
+                <span class="quote-author">80 ANOS DE AMOR</span>
+            </div>
+        </section>
+
+        <!-- PAGE: LOCAL -->
+        <section id="page-local" class="page-section">
+            <div class="section-header-centered">
+                <span class="section-badge-top">OITENTA ANOS DE VIDA</span>
+                <h2 class="page-title-serif">A Celebração</h2>
+                <p class="page-subtitle-italic">"Uma vida celebrada em cada detalhe, cercada pelo amor daqueles que
+                    trilharam esse caminho conosco."</p>
+            </div>
+
+            <!-- Informações do Evento -->
+            <div class="event-details-list">
+                <div class="detail-item-card">
+                    <div class="detail-icon-wrapper">
+                        <i data-lucide="calendar"></i>
+                    </div>
+                    <div class="detail-info">
+                        <span class="detail-label">DATA E HORÁRIO</span>
+                        <h4 class="detail-value">15 de Agosto, 2026</h4>
+                        <p class="detail-description">Sábado, às 19:30 horas</p>
+                    </div>
+                </div>
+
+                <div class="detail-item-card">
+                    <div class="detail-icon-wrapper">
+                        <i data-lucide="map-pin"></i>
+                    </div>
+                    <div class="detail-info">
+                        <span class="detail-label">LOCALIZAÇÃO</span>
+                        <h4 class="detail-value">Valle Chico Mineiro</h4>
+                        <p class="detail-description">Estrada da Grama, 4km — São José do Barreiro, SP</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Imagem do Local -->
+            <div class="local-atmosphere-image">
+                <img src="assets/tea_set.png" alt="Decoração e Louça Fina" class="local-img">
+            </div>
+
+            <!-- Mapa -->
+            <div class="map-card-wrapper">
+                <img src="assets/event_map.png" alt="Mapa de Como Chegar" class="map-image-mock">
+                <div class="map-card-overlay">
+                    <span class="map-label">COMO CHEGAR</span>
+                    <p class="map-desc">O local dispõe de serviço de manobrista (Valet) no local.</p>
+                    <a href="https://maps.app.goo.gl/fdAQBc52GrhqeTZs6" target="_blank" class="btn-map-link">
+                        <i data-lucide="navigation"></i> Abrir no Mapa
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: RSVP -->
+        <section id="page-rsvp" class="page-section">
+            <div class="section-header-centered">
+                <h2 class="page-title-serif">Confirme sua Presença</h2>
+                <p class="page-subtitle-italic">Sua presença é o maior presente que Adelaide Maria poderia receber.</p>
+            </div>
+
+            <div class="rsvp-form-container">
+                <form id="rsvp-form" class="elegant-form">
+                    <div class="form-group-field">
+                        <label for="rsvp-name">Nome Completo</label>
+                        <input type="text" id="rsvp-name" required placeholder="Digite seu nome completo">
+                    </div>
+
+                    <div class="form-group-field">
+                        <label for="rsvp-contact">Telefone ou E-mail</label>
+                        <input type="text" id="rsvp-contact" required
+                            placeholder="ex: (71) 99999-9999 ou seu@email.com">
+                    </div>
+
+                    <div class="form-group-field">
+                        <label>Você poderá comparecer?</label>
+                        <div class="radio-group-modern">
+                            <label class="radio-option">
+                                <input type="radio" name="rsvp-attendance" value="sim" checked required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-label">Sim, com certeza!</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="rsvp-attendance" value="nao">
+                                <span class="radio-custom"></span>
+                                <span class="radio-label">Infelizmente, não poderei.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="rsvp-guests-wrapper" class="form-group-field transition-height">
+                        <label for="rsvp-guests">Total de pessoas (incluindo você)</label>
+                        <input type="number" id="rsvp-guests" min="1" max="10" value="1" required>
+                    </div>
+
+                    <div class="form-group-field">
+                        <label for="rsvp-message">Uma mensagem carinhosa para Adelaide Maria</label>
+                        <textarea id="rsvp-message" rows="4"
+                            placeholder="Escreva uma mensagem especial para Adelaide..."></textarea>
+                    </div>
+
+                    <button type="submit" id="btn-submit-rsvp" class="btn-form-submit">Enviar Confirmação</button>
+                    <p class="rsvp-deadline-note">Por favor, confirme até 25 de Julho de 2026.</p>
+                </form>
+
+                <!-- Success State (Hidden by default) -->
+                <div id="rsvp-success-message" class="rsvp-success-card hidden">
+                    <div class="wax-seal-wrapper">
+                        <div class="wax-seal">
+                            <div class="wax-seal-inner">AM</div>
+                        </div>
+                    </div>
+                    <h3>Confirmação Recebida!</h3>
+                    <p id="success-text-detail">Obrigado por confirmar sua presença. Mal podemos esperar para celebrar
+                        este momento especial com você.</p>
+                    <button id="btn-rsvp-reset" class="btn-secondary">Fechar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: MURAL DE MEMÓRIAS -->
+        <section id="page-mural" class="page-section">
+            <div class="section-header-centered">
+                <span class="section-badge-top">LEGADO & AFETO</span>
+                <h2 class="page-title-serif">80 Anos de Histórias</h2>
+                <p class="page-subtitle-italic">Um espaço dedicado para compartilhamos os momentos mais preciosos que
+                    vivemos ao lado de Adelaide Maria. Deixe sua homenagem, foto ou um pequeno relato.</p>
+
+                <button id="btn-open-mural-form" class="btn-primary-mural">
+                    <i data-lucide="pen-tool"></i> Compartilhar uma Memória
+                </button>
+            </div>
+
+            <!-- Create Memory Modal/Form Card (collapsible/overlay style) -->
+            <div id="mural-form-container" class="mural-form-card hidden">
+                <div class="mural-form-header">
+                    <h3>Nova Mensagem</h3>
+                    <button id="btn-close-mural-form" class="btn-icon-close" aria-label="Fechar"><i
+                            data-lucide="x"></i></button>
+                </div>
+                <form id="mural-post-form">
+                    <div class="form-group-field">
+                        <label for="mural-author">Seu Nome</label>
+                        <input type="text" id="mural-author" required placeholder="Seu nome completo">
+                    </div>
+                    <div class="form-group-field">
+                        <label for="mural-relationship">Grau de Parentesco / Relação</label>
+                        <input type="text" id="mural-relationship" required
+                            placeholder="Ex: Filho, Neta, Amigo de infância">
+                    </div>
+                    <div class="form-group-field">
+                        <label for="mural-text">Sua Mensagem ou Lembrança</label>
+                        <textarea id="mural-text" rows="5" required
+                            placeholder="Escreva aqui uma história marcante ou sua mensagem de carinho..."></textarea>
+                    </div>
+                    <div class="form-group-field">
+                        <label for="mural-image">Link da Foto (Opcional)</label>
+                        <input type="url" id="mural-image" placeholder="Ex: https://link-da-imagem.com/foto.jpg">
+                        <span class="input-helper">Cole o link de uma imagem de sua preferência</span>
+                    </div>
+                    <button type="submit" class="btn-form-submit">Publicar no Mural</button>
+                </form>
+            </div>
+
+            <!-- Memories Feed -->
+            <div id="mural-feed" class="mural-posts-feed">
+                <!-- Dynamic posts injected here -->
+            </div>
+
+            <div class="mural-feed-footer">
+                <button id="btn-load-more-memories" class="btn-secondary">Ver mais lembranças</button>
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <!-- Bottom Tab Navigation Bar -->
+    <nav class="app-tab-navigation">
+        <button class="tab-item active" data-tab="home">
+            <i data-lucide="home"></i>
+            <span>Início</span>
+        </button>
+        <button class="tab-item" data-tab="family">
+            <i data-lucide="users"></i>
+            <span>Família</span>
+        </button>
+        <button class="tab-item" data-tab="rsvp">
+            <i data-lucide="calendar-check"></i>
+            <span>Presença</span>
+        </button>
+        <button class="tab-item" data-tab="local">
+            <i data-lucide="map-pin"></i>
+            <span>Local</span>
+        </button>
+    </nav>
+
+</div>
+
+<!-- Scripts -->
+<script src="app.js"></script>
 </body>
+
 </html>

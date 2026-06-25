@@ -157,22 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btnMuralShortcut.addEventListener('click', () => switchTab('mural'));
     }
 
-    // Timeline Modal logic
-    const btnOpenTimeline = document.getElementById('btn-open-timeline');
-    const btnCloseTimelineModal = document.getElementById('btn-close-timeline-modal');
-    const timelineModal = document.getElementById('timeline-modal');
-
-    if (btnOpenTimeline && timelineModal) {
-        btnOpenTimeline.addEventListener('click', () => {
-            timelineModal.classList.remove('hidden');
-        });
-    }
-
-    if (btnCloseTimelineModal && timelineModal) {
-        btnCloseTimelineModal.addEventListener('click', () => {
-            timelineModal.classList.add('hidden');
-        });
-    }
 
     // RSVP Form interactive details
     const rsvpForm = document.getElementById('rsvp-form');
