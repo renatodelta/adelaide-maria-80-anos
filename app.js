@@ -1,5 +1,12 @@
-// URL do Web App do Google Apps Script para salvar as confirmações (RSVP)
-const GOOGLE_SHEET_URL = "SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI";
+// Configuração de envio automático para o Google Sheets (via Google Forms)
+const GOOGLE_FORM_URL = "SUA_URL_DO_GOOGLE_FORMS_AQUI/formResponse";
+const GOOGLE_FORM_ENTRY_MAP = {
+    name: "entry.XXXXXXX",      // Substitua pelo ID do campo Nome
+    contact: "entry.XXXXXXX",   // Substitua pelo ID do campo Contato
+    attendance: "entry.XXXXXXX",// Substitua pelo ID do campo Comparecimento (ex: Sim/Não)
+    guests: "entry.XXXXXXX",    // Substitua pelo ID do campo Quantidade de Pessoas
+    message: "entry.XXXXXXX"    // Substitua pelo ID do campo Mensagem de Carinho
+};
 
 // Initialize Lucide Icons
 document.addEventListener('DOMContentLoaded', () => {
@@ -204,18 +211,25 @@ document.addEventListener('DOMContentLoaded', () => {
             // Save to LocalStorage
             localStorage.setItem('adelaide_rsvp_submission', JSON.stringify(rsvpData));
 
-            // Enviar para o Google Sheets se a URL estiver configurada
-            if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL !== "SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI") {
-                fetch(GOOGLE_SHEET_URL, {
-                    method: "POST",
-                    mode: "no-cors",
+            // Enviar para o Google Forms se a URL estiver configurada
+            if (GOOGLE_FORM_URL && GOOGLE_FORM_URL !== "SUA_URL_DO_GOOGLE_FORMS_AQUI/formResponse") {
+                const formData = new URLSearchParams();
+                formData.append(GOOGLE_FORM_ENTRY_MAP.name, rsvpData.name);
+                formData.append(GOOGLE_FORM_ENTRY_MAP.contact, rsvpData.contact);
+                formData.append(GOOGLE_FORM_ENTRY_MAP.attendance, rsvpData.attendance === 'sim' ? 'Sim' : 'Não');
+                formData.append(GOOGLE_FORM_ENTRY_MAP.guests, rsvpData.attendance === 'sim' ? rsvpData.guests : 0);
+                formData.append(GOOGLE_FORM_ENTRY_MAP.message, rsvpData.message);
+
+                fetch(GOOGLE_FORM_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
                     headers: {
-                        "Content-Type": "application/json"
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: JSON.stringify(rsvpData)
+                    body: formData.toString()
                 })
-                .then(() => console.log("Dados enviados para o Google Sheets com sucesso!"))
-                .catch(err => console.error("Erro ao enviar dados para o Google Sheets:", err));
+                .then(() => console.log("Dados enviados para o Google Forms com sucesso!"))
+                .catch(err => console.error("Erro ao enviar dados para o Google Forms:", err));
             }
 
             // Show success details
