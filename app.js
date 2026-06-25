@@ -37,14 +37,25 @@ window.onYouTubeIframeAPIReady = function() {
                 // Fallback to start playing on the first interaction (tap/click anywhere on screen)
                 // because mobile and desktop browsers block unmuted autoplay by default
                 const startAudioOnInteraction = () => {
-                    if (ytPlayerReady && ytPlayer && ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
-                        ytPlayer.playVideo();
+                    if (ytPlayerReady && ytPlayer) {
+                        const playerState = ytPlayer.getPlayerState();
+                        if (playerState !== YT.PlayerState.PLAYING && playerState !== YT.PlayerState.BUFFERING) {
+                            ytPlayer.playVideo();
+                        }
                     }
-                    document.removeEventListener('click', startAudioOnInteraction);
-                    document.removeEventListener('touchstart', startAudioOnInteraction);
+                    
+                    const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
+                    eventTypes.forEach(type => {
+                        document.removeEventListener(type, startAudioOnInteraction);
+                        window.removeEventListener(type, startAudioOnInteraction);
+                    });
                 };
-                document.addEventListener('click', startAudioOnInteraction);
-                document.addEventListener('touchstart', startAudioOnInteraction);
+                
+                const eventTypes = ['click', 'touchstart', 'touchend', 'pointerdown'];
+                eventTypes.forEach(type => {
+                    document.addEventListener(type, startAudioOnInteraction, { passive: true });
+                    window.addEventListener(type, startAudioOnInteraction, { passive: true });
+                });
             },
             'onStateChange': (event) => {
                 const btnMusicToggle = document.getElementById('btn-music-toggle');

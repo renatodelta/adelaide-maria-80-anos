@@ -17,8 +17,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<!-- YouTube Background Music Player (Hidden) -->
-<div id="yt-player" style="position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none;"></div>
+<!-- YouTube Background Music Player (Hidden off-screen to allow mobile playback) -->
+<div id="yt-player" style="position: absolute; width: 1px; height: 1px; left: -9999px; pointer-events: none;"></div>
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <!-- App Container to enforce elegant mobile device framing or responsive central container on desktop -->
