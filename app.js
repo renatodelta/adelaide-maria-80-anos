@@ -497,6 +497,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Lightbox modal for avatars and images
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+
+    if (lightbox && lightboxImg && lightboxClose) {
+        const setupZoomable = (imgElement, captionText) => {
+            imgElement.style.cursor = 'zoom-in';
+            imgElement.addEventListener('click', (e) => {
+                e.stopPropagation();
+                lightbox.style.display = 'block';
+                // Trigger reflow for transition
+                lightbox.offsetHeight;
+                lightbox.classList.add('active');
+                lightboxImg.src = imgElement.src;
+                lightboxCaption.textContent = captionText || imgElement.alt;
+            });
+        };
+
+        // Attach to Rogério's avatar and any future member avatar images
+        document.querySelectorAll('.member-avatar img').forEach(img => {
+            const memberCard = img.closest('.member-card');
+            const memberName = memberCard ? memberCard.querySelector('.member-name').textContent : img.alt;
+            setupZoomable(img, memberName);
+        });
+
+        // Close lightbox
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                if (!lightbox.classList.contains('active')) {
+                    lightbox.style.display = 'none';
+                }
+            }, 300); // match transition duration
+        };
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', closeLightbox);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    }
+
     // Initialize Mural view
     renderMemories();
 });
