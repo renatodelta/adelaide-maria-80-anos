@@ -251,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnRsvpReset.addEventListener('click', () => {
             rsvpSuccess.classList.add('hidden');
             rsvpForm.classList.remove('hidden');
+            switchTab('home');
         });
     }
 
