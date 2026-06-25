@@ -94,6 +94,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    min-height: 100dvh;
     padding: 0;
     overflow-x: hidden;
     background-image: radial-gradient(circle at 10% 20%, rgba(122, 154, 130, 0.05) 0%, transparent 40%),
@@ -105,6 +106,7 @@ body {
     width: 100%;
     max-width: 480px;
     height: 100vh;
+    height: 100dvh;
     background-color: var(--color-bg-base);
     display: flex;
     flex-direction: column;
@@ -114,10 +116,20 @@ body {
     border: none;
 }
 
+@media (max-width: 767px) {
+    html, body {
+        height: 100%;
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+    }
+}
+
 @media (min-width: 768px) {
     .app-container {
         max-width: 500px;
         height: 92vh;
+        height: 92dvh;
         border-radius: var(--border-radius-lg);
         border: 2px solid var(--color-surface-container-high);
         box-shadow: 0 25px 60px rgba(31, 58, 49, 0.15);
