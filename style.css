@@ -1714,17 +1714,17 @@ body {
 }
 
 .local-gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 28px;
 }
 .local-gallery-grid .gallery-item {
-    height: 100px;
+    height: 240px;
     border-radius: var(--border-radius-default);
     overflow: hidden;
     border: 1px solid rgba(212, 175, 55, 0.15);
-    box-shadow: 0 4px 10px var(--color-shadow);
+    box-shadow: 0 6px 20px var(--color-shadow);
 }
 .local-gallery-grid .gallery-item img {
     width: 100%;

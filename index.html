@@ -45,9 +45,6 @@
             <button id="btn-music-toggle" class="music-toggle-btn" aria-label="Música de Fundo">
                 <i data-lucide="music"></i>
             </button>
-            <button id="btn-mural-shortcut" class="header-icon-btn" aria-label="Mural de Memórias">
-                <i data-lucide="sparkles"></i>
-            </button>
         </div>
     </header>
 
@@ -67,8 +64,6 @@
                     Presença</button></li>
             <li><button class="sidebar-link-btn" data-target="local"><i data-lucide="map-pin"></i> Local e
                     Informações</button></li>
-            <li><button class="sidebar-link-btn" data-target="mural"><i data-lucide="heart"></i> Mural de
-                    Memórias</button></li>
         </ul>
     </nav>
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
@@ -399,12 +394,7 @@
             </div>
 
 
-            <!-- Imagem do Local -->
-            <div class="local-atmosphere-image">
-                <img src="assets/local_1.png" alt="Decoração e Louça Fina" class="local-img">
-            </div>
-
-            <!-- Galeria do Local -->
+             <!-- Galeria do Local -->
             <div class="local-gallery-title">
                 <h4>Conheça o Valle Chico Mineiro</h4>
                 <p>Algumas fotos deste espaço acolhedor na serra</p>
@@ -413,18 +403,6 @@
                 <div class="gallery-item"><img src="assets/chico (1).png" alt="Valle Chico Mineiro 1"></div>
                 <div class="gallery-item"><img src="assets/chico (2).png" alt="Valle Chico Mineiro 2"></div>
                 <div class="gallery-item"><img src="assets/chico (3).png" alt="Valle Chico Mineiro 3"></div>
-            </div>
-
-            <!-- Vídeo do Local -->
-            <div class="video-card-wrapper">
-                <div class="video-card-content">
-                    <span class="video-badge">VÍDEO DO LOCAL</span>
-                    <h4>Assista a uma prévia do espaço</h4>
-                    <p>Veja os detalhes encantadores do Valle Chico Mineiro</p>
-                    <a href="https://maps.app.goo.gl/m5XsCTRnVRgESjB3A" target="_blank" class="btn-video-link">
-                        <i data-lucide="play-circle"></i> Assistir Vídeo no Maps
-                    </a>
-                </div>
             </div>
 
             <!-- Mapa -->
@@ -506,58 +484,6 @@
             </div>
         </section>
 
-        <!-- PAGE: MURAL DE MEMÓRIAS -->
-        <section id="page-mural" class="page-section">
-            <div class="section-header-centered">
-                <span class="section-badge-top">LEGADO & AFETO</span>
-                <h2 class="page-title-serif">80 Anos de Histórias</h2>
-                <p class="page-subtitle-italic">Um espaço dedicado para compartilhamos os momentos mais preciosos que
-                    vivemos ao lado de Adelaide Maria. Deixe sua homenagem, foto ou um pequeno relato.</p>
-
-                <button id="btn-open-mural-form" class="btn-primary-mural">
-                    <i data-lucide="pen-tool"></i> Compartilhar uma Memória
-                </button>
-            </div>
-
-            <!-- Create Memory Modal/Form Card (collapsible/overlay style) -->
-            <div id="mural-form-container" class="mural-form-card hidden">
-                <div class="mural-form-header">
-                    <h3>Nova Mensagem</h3>
-                    <button id="btn-close-mural-form" class="btn-icon-close" aria-label="Fechar"><i
-                            data-lucide="x"></i></button>
-                </div>
-                <form id="mural-post-form">
-                    <div class="form-group-field">
-                        <label for="mural-author">Seu Nome</label>
-                        <input type="text" id="mural-author" required placeholder="Seu nome completo">
-                    </div>
-                    <div class="form-group-field">
-                        <label for="mural-relationship">Grau de Parentesco / Relação</label>
-                        <input type="text" id="mural-relationship" required
-                            placeholder="Ex: Filho, Neta, Amigo de infância">
-                    </div>
-                    <div class="form-group-field">
-                        <label for="mural-text">Sua Mensagem ou Lembrança</label>
-                        <textarea id="mural-text" rows="5" required
-                            placeholder="Escreva aqui uma história marcante ou sua mensagem de carinho..."></textarea>
-                    </div>
-                    <div class="form-group-field">
-                        <label for="mural-image">Link da Foto (Opcional)</label>
-                        <input type="url" id="mural-image" placeholder="Ex: https://link-da-imagem.com/foto.jpg">
-                        <span class="input-helper">Cole o link de uma imagem de sua preferência</span>
-                    </div>
-                    <button type="submit" class="btn-form-submit">Publicar no Mural</button>
-                </form>
-            </div>
-
-            <!-- Memories Feed -->
-            <div id="mural-feed" class="mural-posts-feed">
-                <!-- Dynamic posts injected here -->
-            </div>
-
-            <div class="mural-feed-footer">
-                <button id="btn-load-more-memories" class="btn-secondary">Ver mais lembranças</button>
-            </div>
         </section>
 
 
