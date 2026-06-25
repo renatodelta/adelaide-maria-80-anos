@@ -1638,8 +1638,8 @@ body {
     line-height: 1.5;
 }
 
-/* FLOATING LEAVES BACKGROUND EFFECT */
-.falling-leaves-container {
+/* FLOATING ROSE PETALS BACKGROUND EFFECT */
+.falling-petals-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -1650,39 +1650,50 @@ body {
     overflow: hidden;
 }
 
-.leaf-particle {
+.petal-particle {
     position: absolute;
     display: block;
-    width: 15px;
-    height: 15px;
-    background-color: var(--color-accent);
-    opacity: 0.25;
-    border-radius: 0 100%;
-    animation: fall-animation 12s linear infinite;
+    width: 16px;
+    height: 20px;
+    background: linear-gradient(135deg, #ffb3c1, #ff758f);
+    opacity: 0.5;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: fall-animation 10s linear infinite;
+    box-shadow: 0 2px 5px rgba(255, 117, 143, 0.2);
 }
 
-.leaf-particle:nth-child(2n) {
-    background-color: var(--color-secondary);
+.petal-particle:nth-child(2n) {
+    background: linear-gradient(135deg, #ffccd5, #ff8fa3);
+    width: 14px;
+    height: 18px;
+    border-radius: 50% 50% 10% 50% / 50% 50% 10% 50%;
+    animation-duration: 12s;
+}
+
+.petal-particle:nth-child(3n) {
+    background: linear-gradient(135deg, #ff4d6d, #c9184a);
     width: 18px;
-    height: 10px;
-    border-radius: 50%;
+    height: 22px;
+    opacity: 0.35;
+    border-radius: 50% 0 50% 50%;
+    animation-duration: 8s;
 }
 
 @keyframes fall-animation {
     0% {
-        top: -20px;
-        transform: translateX(0) rotate(0deg);
+        top: -30px;
+        transform: translateX(0) rotate(0deg) scale(0.8);
         opacity: 0;
     }
     10% {
-        opacity: 0.4;
+        opacity: 0.6;
     }
     90% {
-        opacity: 0.4;
+        opacity: 0.6;
     }
     100% {
         top: 105%;
-        transform: translateX(80px) rotate(360deg);
+        transform: translateX(100px) rotate(480deg) scale(1.1);
         opacity: 0;
     }
 }
