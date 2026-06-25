@@ -50,23 +50,53 @@ document.addEventListener('DOMContentLoaded', () => {
         const countdownInterval = setInterval(updateCountdown, 1000);
     }
 
-    // Background Music Logic
-    const bgMusic = document.getElementById('bg-music');
+    // YouTube Background Music Logic
+    let ytPlayer;
+    let ytPlayerReady = false;
     const btnMusicToggle = document.getElementById('btn-music-toggle');
 
-    if (bgMusic && btnMusicToggle) {
-        bgMusic.volume = 0.35; // Soft ambient volume
+    window.onYouTubeIframeAPIReady = function() {
+        ytPlayer = new YT.Player('yt-player', {
+            height: '0',
+            width: '0',
+            videoId: 'jbLksaBn6vY',
+            playerVars: {
+                'autoplay': 0,
+                'loop': 1,
+                'playlist': 'jbLksaBn6vY', // Required for looping single video in YT player
+                'controls': 0,
+                'showinfo': 0,
+                'rel': 0,
+                'modestbranding': 1
+            },
+            events: {
+                'onReady': (event) => {
+                    ytPlayerReady = true;
+                    ytPlayer.setVolume(35); // Soft ambient volume
+                },
+                'onStateChange': (event) => {
+                    if (event.data === YT.PlayerState.PLAYING) {
+                        btnMusicToggle.classList.add('playing');
+                    } else {
+                        btnMusicToggle.classList.remove('playing');
+                    }
+                }
+            }
+        });
+    };
 
+    if (btnMusicToggle) {
         btnMusicToggle.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                bgMusic.play().then(() => {
-                    btnMusicToggle.classList.add('playing');
-                }).catch(err => {
-                    console.log("Audio playback was blocked or failed:", err);
-                });
+            if (!ytPlayerReady || !ytPlayer) {
+                console.log("YouTube Player não está pronto ainda.");
+                return;
+            }
+            
+            const playerState = ytPlayer.getPlayerState();
+            if (playerState === YT.PlayerState.PLAYING) {
+                ytPlayer.pauseVideo();
             } else {
-                bgMusic.pause();
-                btnMusicToggle.classList.remove('playing');
+                ytPlayer.playVideo();
             }
         });
     }
