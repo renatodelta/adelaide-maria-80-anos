@@ -4,6 +4,63 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
     
+    // Countdown Timer Logic
+    const countdownDate = new Date("Aug 15, 2026 19:30:00").getTime();
+    const daysEl = document.getElementById('countdown-days');
+    const hoursEl = document.getElementById('countdown-hours');
+    const minutesEl = document.getElementById('countdown-minutes');
+    const secondsEl = document.getElementById('countdown-seconds');
+
+    if (daysEl && hoursEl && minutesEl && secondsEl) {
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                daysEl.textContent = "00";
+                hoursEl.textContent = "00";
+                minutesEl.textContent = "00";
+                secondsEl.textContent = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            daysEl.textContent = String(days).padStart(2, '0');
+            hoursEl.textContent = String(hours).padStart(2, '0');
+            minutesEl.textContent = String(minutes).padStart(2, '0');
+            secondsEl.textContent = String(seconds).padStart(2, '0');
+        };
+        
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    }
+
+    // Background Music Logic
+    const bgMusic = document.getElementById('bg-music');
+    const btnMusicToggle = document.getElementById('btn-music-toggle');
+
+    if (bgMusic && btnMusicToggle) {
+        bgMusic.volume = 0.35; // Soft ambient volume
+
+        btnMusicToggle.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    btnMusicToggle.classList.add('playing');
+                }).catch(err => {
+                    console.log("Audio playback was blocked or failed:", err);
+                });
+            } else {
+                bgMusic.pause();
+                btnMusicToggle.classList.remove('playing');
+            }
+        });
+    }
+    
     // Page Tab Navigation
     const tabs = document.querySelectorAll('.tab-item');
     const sections = document.querySelectorAll('.page-section');
@@ -147,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show success details
             const successText = document.getElementById('success-text-detail');
             if (rsvpData.attendance === 'sim') {
-                successText.textContent = `Sua presença foi confirmada com sucesso para ${rsvpData.guests} pessoa(s). Agradecemos o carinho e nos vemos no dia 8 de Agosto!`;
+                successText.textContent = `Sua presença foi confirmada com sucesso para ${rsvpData.guests} pessoa(s). Agradecemos o carinho e nos vemos no dia 15 de Agosto!`;
             } else {
                 successText.textContent = `Agradecemos por nos informar. Sua mensagem de carinho foi enviada com sucesso para Adelaide Maria.`;
             }
@@ -334,6 +391,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
+
+        // Apply random rotation to simulate realistic polaroid photos on a wall
+        document.querySelectorAll('.memory-post-card').forEach(card => {
+            if (!card.style.transform) {
+                const randomRotate = (Math.random() * 6 - 3).toFixed(1); // -3deg to +3deg
+                card.style.transform = `rotate(${randomRotate}deg)`;
+            }
+        });
 
         // Add like button handlers
         document.querySelectorAll('.btn-like-post').forEach(btn => {

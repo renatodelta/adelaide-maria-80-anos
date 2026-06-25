@@ -13,9 +13,20 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+    <!-- Background Music Element -->
+    <audio id="bg-music" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
+
     <!-- App Container to enforce elegant mobile device framing or responsive central container on desktop -->
     <div class="app-container">
+        
+        <!-- Falling Leaves Background Effect -->
+        <div class="falling-leaves-container" id="leaves-container">
+            <span class="leaf-particle" style="left: 10%; animation-delay: 0s;"></span>
+            <span class="leaf-particle" style="left: 30%; animation-delay: 2s;"></span>
+            <span class="leaf-particle" style="left: 55%; animation-delay: 4s;"></span>
+            <span class="leaf-particle" style="left: 75%; animation-delay: 1.5s;"></span>
+            <span class="leaf-particle" style="left: 90%; animation-delay: 5s;"></span>
+        </div>
         
         <!-- Header -->
         <header class="app-header">
@@ -23,9 +34,14 @@
                 <i data-lucide="menu"></i>
             </button>
             <h1 class="header-title">Adelaide Maria</h1>
-            <button id="btn-mural-shortcut" class="header-icon-btn" aria-label="Mural de Memórias">
-                <i data-lucide="sparkles"></i>
-            </button>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <button id="btn-music-toggle" class="music-toggle-btn" aria-label="Música de Fundo">
+                    <i data-lucide="music"></i>
+                </button>
+                <button id="btn-mural-shortcut" class="header-icon-btn" aria-label="Mural de Memórias">
+                    <i data-lucide="sparkles"></i>
+                </button>
+            </div>
         </header>
 
         <!-- Sidebar Navigation Menu (Overlay) -->
@@ -66,10 +82,30 @@
                     
                     <div class="event-brief-card">
                         <div class="event-month">AGOSTO</div>
-                        <div class="event-day">08</div>
+                        <div class="event-day">15</div>
                         <div class="event-time">
                             <span>Sábado, às 19:30h</span>
                             <strong>2026</strong>
+                        </div>
+                    </div>
+
+                    <!-- Countdown Timer -->
+                    <div class="countdown-container">
+                        <div class="countdown-box">
+                            <span id="countdown-days" class="countdown-number">00</span>
+                            <span class="countdown-label">Dias</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="countdown-hours" class="countdown-number">00</span>
+                            <span class="countdown-label">Horas</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="countdown-minutes" class="countdown-number">00</span>
+                            <span class="countdown-label">Min</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="countdown-seconds" class="countdown-number">00</span>
+                            <span class="countdown-label">Seg</span>
                         </div>
                     </div>
 
@@ -251,7 +287,7 @@
                         </div>
                         <div class="detail-info">
                             <span class="detail-label">DATA E HORÁRIO</span>
-                            <h4 class="detail-value">08 de Agosto, 2026</h4>
+                            <h4 class="detail-value">15 de Agosto, 2026</h4>
                             <p class="detail-description">Sábado, às 19:30 horas</p>
                         </div>
                     </div>
@@ -262,8 +298,8 @@
                         </div>
                         <div class="detail-info">
                             <span class="detail-label">LOCALIZAÇÃO</span>
-                            <h4 class="detail-value">Palacete das Artes</h4>
-                            <p class="detail-description">Rua da Graça, 284 — Salvador, BA</p>
+                            <h4 class="detail-value">Valle Chico Mineiro</h4>
+                            <p class="detail-description">Estrada da Grama, 4km — São José do Barreiro, SP</p>
                         </div>
                     </div>
 
@@ -290,7 +326,7 @@
                     <div class="map-card-overlay">
                         <span class="map-label">COMO CHEGAR</span>
                         <p class="map-desc">O local dispõe de serviço de manobrista (Valet) no local.</p>
-                        <a href="https://maps.google.com/?q=Palacete+das+Artes+Salvador+Bahia" target="_blank" class="btn-map-link">
+                        <a href="https://maps.app.goo.gl/fdAQBc52GrhqeTZs6" target="_blank" class="btn-map-link">
                             <i data-lucide="navigation"></i> Abrir no Mapa
                         </a>
                     </div>
@@ -348,8 +384,10 @@
 
                     <!-- Success State (Hidden by default) -->
                     <div id="rsvp-success-message" class="rsvp-success-card hidden">
-                        <div class="success-icon-badge">
-                            <i data-lucide="check-circle-2"></i>
+                        <div class="wax-seal-wrapper">
+                            <div class="wax-seal">
+                                <div class="wax-seal-inner">AM</div>
+                            </div>
                         </div>
                         <h3>Confirmação Recebida!</h3>
                         <p id="success-text-detail">Obrigado por confirmar sua presença. Mal podemos esperar para celebrar este momento especial com você.</p>
