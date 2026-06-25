@@ -1,3 +1,6 @@
+// URL do Web App do Google Apps Script para salvar as confirmações (RSVP)
+const GOOGLE_SHEET_URL = "SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI";
+
 // Initialize Lucide Icons
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') {
@@ -200,6 +203,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Save to LocalStorage
             localStorage.setItem('adelaide_rsvp_submission', JSON.stringify(rsvpData));
+
+            // Enviar para o Google Sheets se a URL estiver configurada
+            if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL !== "SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI") {
+                fetch(GOOGLE_SHEET_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(rsvpData)
+                })
+                .then(() => console.log("Dados enviados para o Google Sheets com sucesso!"))
+                .catch(err => console.error("Erro ao enviar dados para o Google Sheets:", err));
+            }
 
             // Show success details
             const successText = document.getElementById('success-text-detail');
