@@ -524,6 +524,11 @@ document.addEventListener('DOMContentLoaded', () => {
             setupZoomable(img, memberName);
         });
 
+        // Attach to local gallery images
+        document.querySelectorAll('.local-gallery-grid img').forEach(img => {
+            setupZoomable(img, img.alt);
+        });
+
         // Close lightbox
         const closeLightbox = () => {
             lightbox.classList.remove('active');

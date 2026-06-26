@@ -1876,3 +1876,91 @@ body {
     font-size: 1.25rem;
     letter-spacing: 0.5px;
 }
+
+/* SANTA MISSA CARD */
+.mass-invitation-card {
+    background-color: var(--color-surface);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: var(--border-radius-md);
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 20px var(--color-shadow);
+    position: relative;
+    background-image: radial-gradient(circle at top left, rgba(212, 175, 55, 0.05), transparent);
+}
+
+.mass-icon-wrapper {
+    background-color: var(--color-surface-container-low);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    color: var(--color-primary);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px auto;
+}
+
+.mass-icon-wrapper i {
+    width: 24px;
+    height: 24px;
+}
+
+.mass-title {
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.mass-subtitle {
+    font-family: var(--font-caption);
+    font-size: 0.75rem;
+    color: var(--color-accent-hover);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.mass-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--color-surface-container-low);
+    padding: 16px;
+    border-radius: var(--border-radius-default);
+    margin-bottom: 16px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.mass-detail-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.mass-detail-item i {
+    width: 16px;
+    height: 16px;
+    color: var(--color-accent-hover);
+}
+
+.mass-detail-item strong {
+    color: var(--color-primary);
+}
+
+.mass-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-top: 12px;
+}
